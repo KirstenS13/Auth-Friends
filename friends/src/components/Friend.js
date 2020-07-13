@@ -1,6 +1,15 @@
 import React from 'react';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const Friend = props => {
+    /* const removeFriend = e => {
+        e.preventDefault();
+        axiosWithAuth
+            .delete()
+            .then()
+            .catch()
+    } */
+
     return (
         <>
             <p>{props.name}</p>

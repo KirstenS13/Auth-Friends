@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import Friend from './Friend';
+import FriendForm from './FriendForm';
 
-const fakeFriends = [
+/* const fakeFriends = [
     {
         id: 0,
         name: "Kris",
@@ -27,21 +28,21 @@ const fakeFriends = [
         age: 20,
         email: "chrys@gmail.com"
     }
-]
+] */
 
 const FriendsList = () => {
     const [friends, setFriends] = useState([]);
 
-    useEffect(() => {
+    /* useEffect(() => {
         setFriends(fakeFriends);
-    }, [fakeFriends]);
+    }, []); */
     
-    /* const getData = () => {
-        axiosWithAuth
-            .get("http://localhost:5000/api/friends")
+    const getData = () => {
+        axiosWithAuth()
+            .get("friends")
             .then(res => {
                 console.log('res', res);
-                setFriends(res);
+                setFriends(res.data);
             })
             .catch(err => {
                 console.log('err', err);
@@ -50,10 +51,11 @@ const FriendsList = () => {
     
     useEffect(() => {
         getData();
-    }, [friends]); */
+    }, []);
 
     return (
         <>
+            <FriendForm />
             <p>Friends List</p>
             {friends.map(friend => {
                 return (
