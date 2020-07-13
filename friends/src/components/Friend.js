@@ -1,5 +1,5 @@
 import React from 'react';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+//import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const Friend = props => {
     /* const removeFriend = e => {
@@ -15,8 +15,8 @@ const Friend = props => {
             <p>{props.name}</p>
             <p>Age: {props.age}</p>
             <p>Email: {props.email}</p>
-            <button>Remove Friend</button>
-            <button>Edit Friend</button>
+            {/* <button>Remove Friend</button>
+            <button>Edit Friend</button> */}
         </>
     )
 }

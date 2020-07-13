@@ -1,24 +1,33 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const FriendForm = () => {
-    const [friendState, setFriendState] = useState({
+const FriendForm = props => {
+    console.log('FriendForm props', props);
+
+    const [newFriend, setNewFriend] = useState({
+        id: 7,
         name: "",
         age: "",
         email: ""
     })
 
     const handleChanges = e => {
-        setFriendState({ ...friendState, [e.target.name]: e.target.value });
+        setNewFriend({ ...newFriend, [e.target.name]: e.target.value });
     }
 
     const addFriend = e => {
         e.preventDefault();
-        axiosWithAuth
-            .post()
-            .then()
-            .catch();
-        setFriendState({
+        axiosWithAuth()
+            .post("friends", newFriend)
+            .then(res => {
+                console.log('addFriend res', res);
+                props.getData();
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        setNewFriend({
+            id: newFriend.id + 1,
             name: "",
             age: "",
             email: ""
@@ -33,7 +42,7 @@ const FriendForm = () => {
                 name="name"
                 id="name"
                 placeholder="Enter friend's name..."
-                value={friendState.name}
+                value={newFriend.name}
                 onChange={handleChanges}
             />
             <label htmlFor="age">Age: </label>
@@ -42,7 +51,7 @@ const FriendForm = () => {
                 name="age"
                 id="age"
                 placeholder="Enter friend's age..."
-                value={friendState.age}
+                value={newFriend.age}
                 onChange={handleChanges}
             />
             <label htmlFor="email">Email: </label>
@@ -51,7 +60,7 @@ const FriendForm = () => {
                 name="email"
                 id="email"
                 placeholder="Enter friend's email..."
-                value={friendState.email}
+                value={newFriend.email}
                 onChange={handleChanges}
             />
             <button>Add Friend</button>

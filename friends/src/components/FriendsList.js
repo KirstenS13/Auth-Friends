@@ -55,7 +55,7 @@ const FriendsList = () => {
 
     return (
         <>
-            <FriendForm />
+            <FriendForm getData={getData}/>
             <p>Friends List</p>
             {friends.map(friend => {
                 return (
