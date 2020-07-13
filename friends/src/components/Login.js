@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 
 const Login = () => {
     const [formState, setFormState] = useState({
-        username: "",
-        password: ""
+        credentials: {
+            username: "",
+            password: ""
+        }
     })
 
     const handleChanges = e => {
