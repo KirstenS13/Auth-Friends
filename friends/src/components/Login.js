@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 
-const Login = () => {
+const Login = props => {
+    console.log('login props.history', props.history)
+
     const [formState, setFormState] = useState({
         credentials: {
             username: "Lambda School",
@@ -23,7 +25,7 @@ const Login = () => {
                 console.log('res', res);
                 setFormState({ ...formState, isLoading: false});
                 localStorage.setItem("token", res.data.payload);
-                //history.push("/friendslist");
+                props.history.push("/friendslist");
             })
             .catch(err => {
                 console.log('err', err);

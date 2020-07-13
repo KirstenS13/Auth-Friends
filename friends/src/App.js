@@ -14,7 +14,9 @@ function App() {
       <Link to="/friendslist">View Friends</Link>
       <Switch>
         <PrivateRoute path="/friendslist" component={FriendsList}/>
-        <Route path="/login" component={Login}/>
+        <Route path="/login" render={(props) => (
+          <Login {...props} history={History}/>
+        )}/>
         <Route component={Login}/>
       </Switch>
     </div>
