@@ -7,6 +7,7 @@ import Login from './components/Login';
 import FriendsList from './components/FriendsList';
 import PrivateRoute from './components/PrivateRoute';
 
+//must pass history down as props to Login component
 function App() {
   return (
     <div className="app">
