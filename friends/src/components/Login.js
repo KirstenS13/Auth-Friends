@@ -1,25 +1,38 @@
-import React, {useState} from 'react';
+import React, {useState, useReducer} from 'react';
+import {initialState, reducer} from '../reducers';
+import axios from 'axios';
 
 const Login = () => {
     const [formState, setFormState] = useState({
-        username: "",
-        password: ""
-    })
+        credentials: {
+            username: "",
+            password: ""
+        },
+        isLoading: false
+    });
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     const handleChanges = e => {
-        setFormState({ ...formState, [e.target.name]: e.target.value })
+        setFormState({ ...formState, credentials: { ...formState.credentials, [e.target.name]: e.target.value }})
     };
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        setFormState({...state, isLoading: true});
+        dispatch({ type: "LOGIN", payload: formState});
+        axios.post()
+    }
 
     return (
         <>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"
                     name="username"
                     id="username"
                     placeholder="Enter username..."
-                    value={formState.username}
+                    value={formState.credentials.username}
                     onChange={handleChanges}
                 />
                 <label htmlFor="password">Password:</label>
@@ -28,7 +41,7 @@ const Login = () => {
                     name="password"
                     id="password"
                     placeholder="Enter password..."
-                    value={formState.password}
+                    value={formState.credentials.password}
                     onChange={handleChanges}
                 />
                 <button>Login</button>
