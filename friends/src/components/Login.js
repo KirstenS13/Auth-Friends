@@ -23,6 +23,7 @@ const Login = () => {
                 console.log('res', res);
                 setFormState({ ...formState, isLoading: false});
                 localStorage.setItem("token", res.data.payload);
+                //history.push("/friendslist");
             })
             .catch(err => {
                 console.log('err', err);
