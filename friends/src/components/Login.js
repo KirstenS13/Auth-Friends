@@ -1,6 +1,5 @@
-import React, {useState, useReducer} from 'react';
-import {initialState, reducer} from '../reducers';
-import axios from 'axios';
+import React, {useState} from 'react';
+import {login} from '../actions';
 
 const Login = () => {
     const [formState, setFormState] = useState({
@@ -10,7 +9,6 @@ const Login = () => {
         },
         isLoading: false
     });
-    const [state, dispatch] = useReducer(reducer, initialState);
 
     const handleChanges = e => {
         setFormState({ ...formState, credentials: { ...formState.credentials, [e.target.name]: e.target.value }})
@@ -18,9 +16,8 @@ const Login = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        setFormState({...state, isLoading: true});
-        dispatch({ type: "LOGIN", payload: formState});
-        axios.post()
+        setFormState({...formState, isLoading: true});
+        login(formState);
     }
 
     return (
